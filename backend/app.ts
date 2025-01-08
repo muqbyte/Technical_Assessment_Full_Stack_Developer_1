@@ -2,9 +2,14 @@ import express, { Express, Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import itemRoute from "./routes/item.route";
+import 'dotenv/config'
+import { dbInit } from './database/connection';
+import router from './routes/item.route';
 
 const app: Express = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
+
+dbInit();
 
 // Middleware
 app.use(helmet());
@@ -13,7 +18,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
-app.use('/api/item', itemRoute);
+app.use(router)
+// app.use('/api/item', itemRoute);
 
 // Error handling middleware
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
