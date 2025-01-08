@@ -28,8 +28,6 @@ npm run dev
 4. Run npm run dev
 
 ```
-
-
 cd .\frontend
 
 npm install
